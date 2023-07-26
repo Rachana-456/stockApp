@@ -2,7 +2,7 @@
 Exposing API's
 1. To Authenticate User
   /login
-token will generate, view token from Request Header
+token will generate, view token from Response Header
 2. To Register User
    /api/registeruser
 
