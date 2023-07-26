@@ -1,5 +1,6 @@
 # stockApp
 Exposing API's
+server detail - localhost:"port"
 1. To Authenticate User
   /login
 token will generate, view token from Response Header
