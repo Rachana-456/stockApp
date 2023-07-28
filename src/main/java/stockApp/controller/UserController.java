@@ -31,8 +31,13 @@ public class UserController {
     @GetMapping("/hello")
     public String hello(){
 
-        ResponseEntity<String> response;
-        return "<h3> API Testing</h3>";
+        return " Hi There! You have Passed Valid Token So Now " +
+                "You are accessing A Authorized API/Resources  : localhost:8080/api/hello";
+    }
+    @GetMapping("/test")
+    public String test(){
+
+        return "true";
     }
 
     @PostMapping("/registeruser")
