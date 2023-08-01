@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.web.bind.annotation.*;
+import stockApp.filter.CustomAuthorizationFilter;
 import stockApp.model.User;
 import stockApp.repository.UserRepository;
 import stockApp.service.UserService;
@@ -28,17 +29,38 @@ public class UserController {
     UserRepository userRepository;
     @Autowired
     UserService userService;
+    @Autowired
+    CustomAuthorizationFilter customAuthorizationFilter;
     @GetMapping("/hello")
     public String hello(){
-
-        return " Hi There! You have Passed Valid Token So Now " +
-                "You are accessing A Authorized API/Resources  : localhost:8080/api/hello";
-    }
-    @GetMapping("/test")
-    public String test(){
-
+        System.out.println("dummy : Private Api");
+//        return " Hi There! You have Passed Valid Token So Now " +
+//                "You are accessing A Authorized API/Resources  : localhost:8080/api/hello";
         return "true";
     }
+    @GetMapping("/validateToken")
+    public String validateToken(@RequestHeader("Authorization") String tokenHeader){
+        System.out.println("called : " + tokenHeader);
+        boolean tokenIsValid = customAuthorizationFilter.validateToken(tokenHeader);
+        //System.out.println("tokenIsValid : " + tokenIsValid);
+        return "true";
+    }
+
+
+
+
+
+
+
+
+
+//    @GetMapping("/validateToken")
+//    public String validateToken(@RequestParam("authorizationHeader") String tokenHeader){
+//        //System.out.println("called : " + tokenHeader);
+//        boolean tokenIsValid = customAuthorizationFilter.validateToken(tokenHeader);
+//        //System.out.println("tokenIsValid : " + tokenIsValid);
+//        return "true";
+//    }
 
     @PostMapping("/registeruser")
     public User registerUser(@RequestBody User user){
