@@ -13,18 +13,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-            .antMatchers("/login").permitAll()
-            .antMatchers("/stocks").authenticated()
-            .antMatchers("/getData").authenticated()
-            .and()
-            .formLogin();
+                .antMatchers("/login").permitAll()
+                .antMatchers("/stocks").authenticated()
+                .antMatchers("/data").authenticated()
+                .and()
+                .formLogin();
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
-            .withUser("user1").password("{noop}password1").roles("USER")
-            .and()
-            .withUser("user2").password("{noop}password2").roles("USER");
+                .withUser("user1").password("{noop}password1").roles("USER")
+                .and()
+                .withUser("user2").password("{noop}password2").roles("USER");
     }
 }
