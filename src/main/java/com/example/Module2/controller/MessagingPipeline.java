@@ -13,11 +13,11 @@ public class MessagingPipeline {
     @Autowired
     MessagePipelineService mps;
 
-    @RequestMapping(value = "/send", method = {RequestMethod.POST, RequestMethod.PUT,RequestMethod.DELETE,RequestMethod.GET})
-
-    public String publishMessage(@RequestBody String message){
-        mps.sendMessage(message);
-
+    @GetMapping("/send")
+    @PreAuthorize("isAuthenticated()")
+    public String publishMessage(@RequestBody String message , @RequestHeader("Authorization") String autho){
+        String jwtToken=autho.substring(7);
+        mps.sendMessage(message,jwtToken);
         return "Data Published";
     }
 }

@@ -16,15 +16,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login").permitAll()
                 .antMatchers("/stocks").authenticated()
                 .antMatchers("/data").authenticated()
+                .antMatchers("/send").authenticated()
+                .antMatchers("/message").authenticated()
                 .and()
                 .formLogin();
     }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("user1").password("{noop}password1").roles("USER")
-                .and()
-                .withUser("user2").password("{noop}password2").roles("USER");
-    }
 }
