@@ -40,17 +40,16 @@ public class AuthService {
                 throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid access token");
             }
 
-            // Implement your authorization logic here
-            // You can check if the authenticated user has access to the requested stock
+
             boolean isAuthenticated = authResponse.getBody();
             if (!isAuthenticated) {
                 throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Unauthorized access");
             }
 
-            // Additional authorization rules can be implemented based on your requirements
+
         } catch (Exception e) {
-            log.error("Exception while calling API",e);
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Exception while calling API", e);
+            log.error("Exception while calling API");
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Exception while calling API");
         }
 
     }

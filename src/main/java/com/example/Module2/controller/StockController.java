@@ -9,8 +9,8 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/stocks")
 @RequiredArgsConstructor
-public class Controller {
-	
+public class StockController {
+
 	private final ServiceStock service;
 	@GetMapping("/data")
 	@PreAuthorize("isAuthenticated()")
