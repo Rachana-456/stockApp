@@ -1,4 +1,4 @@
-FROM openjdk:11
+FROM openjdk:11 AS base
 FROM mongo
 COPY target/*.jar module1.jar
 EXPOSE 8080
