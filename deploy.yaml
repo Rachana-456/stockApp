@@ -30,7 +30,7 @@ spec:
 
       - name: stockapp
 
-        image: rachana456/stockapp:latest
+        image: rachana456/stockapp:1
 
         ports:
 
